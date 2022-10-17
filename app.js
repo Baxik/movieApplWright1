@@ -1,8 +1,6 @@
 const API_KEY = `2c46288716a18fb7aadcc2a801f3fc6b`
 const image_path = `https://image.tmdb.org/t/p/w1280`
 
-// - API key will only be available for this video since I'll delete it right after that but you can go to https://www.themoviedb.org/ , create an account and get a key for free.
-// - Image path is only the base url from where we'll get the images.
 
 const input = document.querySelector('.search input')
 const btn = document.querySelector('.search button')
@@ -19,7 +17,7 @@ function add_click_effect_to_card (cards) {
     })
 }
 
-// SEARCH MOVIES
+
 async function get_movie_by_search (search_term) {
     const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search_term}`)
     const respData = await resp.json()
@@ -57,7 +55,7 @@ async function add_searched_movies_to_dom () {
     add_click_effect_to_card(cards)
 }
 
-// POPUP
+
 async function get_movie_by_id (id) {
     const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
     const respData = await resp.json()
@@ -154,7 +152,7 @@ async function show_popup (card) {
     })
 }
 
-// Local Storage
+
 function get_LS () {
     const movie_ids = JSON.parse(localStorage.getItem('movie-id'))
     return movie_ids === null ? [] : movie_ids
@@ -168,7 +166,7 @@ function remove_LS (id) {
     localStorage.setItem('movie-id', JSON.stringify(movie_ids.filter(e => e !== id)))
 }
 
-// Favorite Movies
+
 fetch_favorite_movies()
 async function fetch_favorite_movies () {
     main_grid.innerHTML = ''
@@ -207,7 +205,7 @@ function add_favorites_to_dom_from_LS (movie_data) {
     add_click_effect_to_card(cards)
 }
 
-// Trending Movies
+
 get_trending_movies()
 async function get_trending_movies () {
     const resp = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`)
